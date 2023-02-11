@@ -1,0 +1,31 @@
+#! /bin/sh
+
+####Evironment Path
+export PATH="$PATH:$HOME/.config/bspwm/scripts"
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor -d 1 2 3 4 5 6
+
+bspc config border_width         2
+bspc config window_gap          1
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_follows_pointer true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on             
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a Tilix desktop='^1' follow=on
+bspc rule -a Code desktop='^2' follow=on
+bspc rule -a Brave-browser desktop='^3' follow=on
+bspc rule -a Thunar desktop='^4' follow=on
+
+#AutoStart#
+feh --bg-fill /home/rugery/Imágenes/wallpaper.jpg &
+$HOME/.config/polybar/launch.sh --cuts &
+picom &
+dunst &
